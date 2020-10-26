@@ -1,16 +1,32 @@
 import * as firebase from 'firebase';
 
-const config = {
-  apiKey: "AIzaSyBaqM3QI7RwHd6djcJeuxZFoqGkpeRT52o",
-  authDomain: "expense-tracker-e13b6.firebaseapp.com",
-  databaseURL: "https://expense-tracker-e13b6.firebaseio.com",
-  projectId: "expense-tracker-e13b6",
-  storageBucket: "expense-tracker-e13b6.appspot.com",
-  messagingSenderId: "399766565144",
-  appId: "1:399766565144:web:0a728f755ec80939c7ae6d"
+const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
+
+const devConfig = {
+  apiKey,
+  authDomain: "expensify-updated.firebaseapp.com",
+  databaseURL: "https://expensify-updated.firebaseio.com",
+  projectId: "expensify-updated",
+  storageBucket: "expensify-updated.appspot.com",
+  messagingSenderId: "145327994481",
+  appId: "1:145327994481:web:7fe85c13628aa1f3cbcdd0"
 };
 
-firebase.initializeApp(config);
+const testConfig = {
+  apiKey,
+  authDomain: "expensify-updated-test.firebaseapp.com",
+  databaseURL: "https://expensify-updated-test.firebaseio.com",
+  projectId: "expensify-updated-test",
+  storageBucket: "expensify-updated-test.appspot.com",
+  messagingSenderId: "829473497672",
+  appId: "1:829473497672:web:41d8198f45b4a7f6a6ee7d"
+}
+
+if (process.env.NODE_ENV === 'test') {
+  firebase.initializeApp(testConfig);
+} else if (process.env.NODE_ENV === 'development'){
+  firebase.initializeApp(devConfig);
+}
 
 const database = firebase.database();
 
@@ -59,12 +75,12 @@ export { firebase, database as default }
 //   console.log(expenses);
 // });
 
-database.ref('expenses').push({
-  description: 'Coffee',
-  amount: 499,
-  createdAt: 30000,
-  note: 'Nescafe decaf'
-});
+// database.ref('expenses').push({
+//   description: 'Coffee',
+//   amount: 499,
+//   createdAt: 30000,
+//   note: 'Nescafe decaf'
+// });
 
 // database.ref('notes').push({
 //   title: 'Courses',
