@@ -24,11 +24,13 @@ const testConfig = {
 
 if (process.env.NODE_ENV === 'test') {
   firebase.initializeApp(testConfig);
-} else if (process.env.NODE_ENV === 'development'){
+} else {
   firebase.initializeApp(devConfig);
 }
 
 const database = firebase.database();
+
+console.log(firebase.app());
 
 export { firebase, database as default }
 
