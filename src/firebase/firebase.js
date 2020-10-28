@@ -30,8 +30,6 @@ if (process.env.NODE_ENV === 'test') {
 
 const database = firebase.database();
 
-console.log(firebase.app());
-
 export { firebase, database as default }
 
 // // child_removed
