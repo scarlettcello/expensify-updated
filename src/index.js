@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { firebase } from './firebase/firebase';
 import configureStore from './store/configureStore';
-import App, { history } from './App';
+import AppRoute, { history } from './routes/AppRoute';
 import { startSetExpenses } from './actions/expenses';
 import { login, logout} from './actions/auth';
 
@@ -11,7 +11,7 @@ const store = configureStore();
 
 const jsx = (
   <Provider store={store}>
-    <App/>
+    <AppRoute/>
   </Provider>    
 );
 
