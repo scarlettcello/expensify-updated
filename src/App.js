@@ -1,27 +1,31 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Header from './components/Header';
+import { Router, Route, Switch } from 'react-router-dom';
+import { createBrowserHistory as createHistory } from 'history';
 import AddExpense from './components/AddExpense';
 import DashBoard from './components/DashBoard';
 import EditExpense from './components/EditExpense';
 import Help from './components/Help';
+import Login from './components/Login';
 import NotFound from './components/NotFound';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
-import './firebase/firebase';
+import PrivateRoute from './routes/PrivateRoute';
+
+export const history = createHistory();
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Header />
+    <Router history={history}>
+      
       <Switch>
-        <Route path="/" component={DashBoard} exact />
-        <Route path="/create" component={AddExpense} />
-        <Route path="/edit/:id" component={EditExpense} />
+        <Route path="/" component={Login} exact />
+        <PrivateRoute path="/dashboard" component={DashBoard} />
+        <PrivateRoute path="/create" component={AddExpense} />
+        <PrivateRoute path="/edit/:id" component={EditExpense} />
         <Route path="/help" component={Help} />
         <Route component={NotFound} />
       </Switch>
-    </BrowserRouter>
+    </Router>
   );
 }
 
