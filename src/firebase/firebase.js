@@ -2,10 +2,8 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-const apiKey = process.env.REACT_APP_FIREBASE_API_KEY;
-
 const devConfig = {
-  apiKey,
+  apiKey: "AIzaSyALk3YWtE70ShuPlsB7dnOq43ltmQx34jI",
   authDomain: "expensify-updated.firebaseapp.com",
   databaseURL: "https://expensify-updated.firebaseio.com",
   projectId: "expensify-updated",
@@ -15,7 +13,7 @@ const devConfig = {
 };
 
 const testConfig = {
-  apiKey,
+  apiKey: "AIzaSyB7uZUPA9ZoYEMWhD5SVeijjzyIOGJO3Ik",
   authDomain: "expensify-updated-test.firebaseapp.com",
   databaseURL: "https://expensify-updated-test.firebaseio.com",
   projectId: "expensify-updated-test",
