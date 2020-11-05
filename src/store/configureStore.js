@@ -11,7 +11,7 @@ export default () => {
     combineReducers({
       expenses: expensesReducer,
       filters: filtersReducer,
-      auth: authReducer
+      auth: authReducer,
     }),
     composeEnhancers(applyMiddleware(thunk))
   );
