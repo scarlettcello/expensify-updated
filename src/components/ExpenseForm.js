@@ -13,6 +13,7 @@ export default class ExpenseForm extends Component {
       amount: props.expense ? (props.expense.amount / 100).toString() : '',
       createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
       calendarFocused: false,
+      category: props.expense ? props.expense.category : '',
       error: ''
     }
   }
@@ -45,6 +46,11 @@ export default class ExpenseForm extends Component {
     this.setState(() => ({ calendarFocused: focused }))
   }
 
+  onSelectChange = (e) => {
+    const category = e.target.value;
+    this.setState(() => ({ category }));
+  }
+
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -56,8 +62,11 @@ export default class ExpenseForm extends Component {
         description: this.state.description,
         amount: parseFloat(this.state.amount, 10) * 100,
         createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note
+        note: this.state.note,
+        category: this.state.category
       });
+
+      console.log(this.props);
     }
   };
 
@@ -65,6 +74,14 @@ export default class ExpenseForm extends Component {
     return (
       <form className="form" onSubmit={this.onSubmit}>
         {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <SingleDatePicker
+          date={this.state.createdAt}
+          onDateChange={this.onDateChange}
+          focused={this.state.calendarFocused}
+          onFocusChange={this.onFocusChange}
+          numberOfMonths={1}
+          isOutsideRange={(day) => false}
+        />
         <input
           type="text"
           placeholder="Description"
@@ -80,14 +97,23 @@ export default class ExpenseForm extends Component {
           value={this.state.amount}
           onChange={this.onAmountChange}
         />
-        <SingleDatePicker
-          date={this.state.createdAt}
-          onDateChange={this.onDateChange}
-          focused={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          numberOfMonths={1}
-          isOutsideRange={(day) => false}
-        />
+        <select
+          onChange={this.onSelectChange}
+          value={this.state.category}
+        >
+          <option value="">Category</option>
+          <option value="food">Food</option>
+          <option value="clothes">Clothes</option>
+          <option value="housing">Housing</option>
+          <option value="leisure">Leisure</option>
+          <option value="education">Education</option>
+          <option value="communication">Communication</option>
+          <option value="transportation">Transportation</option>
+          <option value="beauty">Beauty</option>
+          <option value="medical">Medical</option>          
+          <option value="miscellaneous">Miscellaneous</option>
+          <option value="tax">Tax</option>
+        </select>
         <textarea
           placeholder="Add a note for your expense (optional)"
           className="textarea"
@@ -99,8 +125,7 @@ export default class ExpenseForm extends Component {
           <button className="button" type="submit">
             Add Expense
           </button>
-        </div>
-        
+        </div>        
       </form>  
     );
   }
