@@ -1,0 +1,50 @@
+.multiselectContainer { // To change css for multiselect (Width,height,etc..)
+  
+}
+
+.searchBox { // To change search box element look
+  font-size: $font-size-lg;
+  height: 35px;
+  padding: 1.2rem;
+  border-radius: 0;
+  box-sizing: border-box;
+}
+
+.inputField { // To change input field position or margin
+    margin: 5px;
+}
+
+.chips { // To change css chips(Selected options)
+  background: red;
+}
+
+.optionContainer { // To change css for option container 
+  border: 2px solid;
+}
+
+.option { // To change css for dropdown options
+  color: $dark-blue;
+}
+
+.groupHeading { // To chanage group heading style
+  
+}
+
+.input-group {
+  div {
+    border-radius: 0px;
+    span {
+      border-radius: 4px;  
+      background: $dark-grey;
+      margin: 0 5px;
+      padding: 3px 6px;
+      i {
+        font-size: 1.8rem;
+        font-weight: 100;
+      }
+    }
+    .searchBox {
+      padding-top: 5px;
+    }
+  } 
+}

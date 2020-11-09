@@ -3,6 +3,11 @@ export const setTextFilter = (text = '') => ({
   text
 });
 
+export const setCategoryFilter = (categories = []) => ({
+  type: 'SET_CATEGORY_FILTER',
+  categories
+});
+
 export const sortByDate = () => ({
   type: 'SORT_BY_DATE'
 });
