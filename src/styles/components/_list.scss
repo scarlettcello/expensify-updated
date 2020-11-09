@@ -20,7 +20,9 @@
   color: $dark-grey;
   display: flex;
   flex-direction: column;
+  font-size: $font-size-md;
   padding: $s-size;
+  text-align: left;
   text-decoration: none;
   transition: background .3s ease;
   &:hover {
@@ -47,11 +49,12 @@
 .list-item__title {
   margin: 0;
   word-break: break-all;
+  text-align: left;
 }
 
 .list-item__sub-title {
   color: $grey;
-  font-size: $font-size-sm;
+  font-size: $font-size-md;
 }
 
 .list-item__data {

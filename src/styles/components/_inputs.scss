@@ -1,7 +1,7 @@
 .text-input, .select {
   border: 1px solid #cacccd;
   height: 50px;
-  font-size: $font-size-lg;
+  font-size: $font-size-md;
   font-weight: 300;
   padding: $s-size;
 }
@@ -18,5 +18,11 @@
 .input-group__item {
   &:last-child {
     margin-right: 0;
+  }
+  .DateRangePickerInput {
+    height: 50px;
+    .DateInput_input {
+      font-size: $font-size-md;
+    }   
   }
 }

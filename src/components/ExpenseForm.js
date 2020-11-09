@@ -74,6 +74,10 @@ export default class ExpenseForm extends Component {
     return (
       <form className="form" onSubmit={this.onSubmit}>
         {this.state.error && <p className="form__error">{this.state.error}</p>}
+        <label class="switch">
+          <input type="checkbox" />
+          <span class="slider round"></span>
+        </label>
         <SingleDatePicker
           date={this.state.createdAt}
           onDateChange={this.onDateChange}
@@ -126,7 +130,7 @@ export default class ExpenseForm extends Component {
         </textarea>
         <div>
           <button className="button" type="submit">
-            Add Expense
+            Add
           </button>
         </div>        
       </form>  
