@@ -100,19 +100,22 @@ export default class ExpenseForm extends Component {
         <select
           onChange={this.onSelectChange}
           value={this.state.category}
+          className="select"
         >
           <option value="">Category</option>
-          <option value="food">Food</option>
-          <option value="clothes">Clothes</option>
-          <option value="housing">Housing</option>
-          <option value="leisure">Leisure</option>
-          <option value="education">Education</option>
-          <option value="communication">Communication</option>
-          <option value="transportation">Transportation</option>
-          <option value="beauty">Beauty</option>
-          <option value="medical">Medical</option>          
-          <option value="miscellaneous">Miscellaneous</option>
-          <option value="tax">Tax</option>
+          <option value="Food">Food</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Housing">Housing</option>
+          <option value="Leisure">Leisure</option>
+          <option value="Education">Education</option>
+          <option value="Communication">Communication</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Beauty">Beauty</option>
+          <option value="Medical">Medical</option>  
+          <option value="Gift">Gift</option>         
+          <option value="Miscellaneous">Miscellaneous</option>
+          <option value="Investment">investment</option>
+          <option value="Tax">Tax</option>
         </select>
         <textarea
           placeholder="Add a note for your expense (optional)"
