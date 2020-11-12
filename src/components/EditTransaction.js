@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import ExpenseForm from './ExpenseForm';
-import { startEditExpense, startRemoveExpense } from '../actions/expenses';
+import TransactionForm from './TransactionForm';
+import { startEditTransaction, startRemoveTransaction } from '../actions/transactions';
 import RemoveModal from './RemoveModal';
 
-export class EditExpense extends React.Component {
+export class EditTransaction extends React.Component {
   state = {
     isOpen: undefined
   }
 
-  onSubmit = (expense) => {
-    this.props.startEditExpense(this.props.expense.id, expense);
+  onSubmit = (transaction) => {
+    this.props.startEditTransaction(this.props.transaction.id, transaction);
     this.props.history.push('/');
   }
 
   handleOpenModal = () => {
-    console.log("click to open modal");
     this.setState(() => ({ isOpen: true })
   )}
 
@@ -24,7 +23,7 @@ export class EditExpense extends React.Component {
   }
 
   onClickRemove = () => {
-    this.props.startRemoveExpense({ id: this.props.expense.id });
+    this.props.startRemoveTransaction({ id: this.props.transaction.id });
     this.props.history.push('/');
   }
 
@@ -33,12 +32,12 @@ export class EditExpense extends React.Component {
       <div>
         <div className="page-header">
           <div className="content-container">
-            <h1 className="page-header__title">Edit Expense</h1>
+            <h1 className="page-header__title">Edit Transaction</h1>
           </div>
         </div>
         <div className="content-container">
-          <ExpenseForm
-            expense={this.props.expense}
+          <TransactionForm
+            transaction={this.props.transaction}
             onSubmit={this.onSubmit}
           />
           <RemoveModal 
@@ -47,7 +46,7 @@ export class EditExpense extends React.Component {
             onClickRemove={this.onClickRemove} 
           />
           <button className="button button--secondary" onClick={this.handleOpenModal} >
-            Remove Expense
+            Remove Transaction
           </button>       
         </div>        
       </div>
@@ -56,18 +55,18 @@ export class EditExpense extends React.Component {
 }
 
 const mapStateToProps = (state, props) => {  
-  const subjectExpense = state.expenses.find((expense) => expense.id === props.match.params.id);
+  const subjectTransaction = state.transactions.find((transaction) => transaction.id === props.match.params.id);
   
   return {
-    expense: subjectExpense,
+    transaction: subjectTransaction,
   };
 };
 
 const mapDispatchToProps = (dispatch, props) => {
   return ({
-    startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
-    startRemoveExpense: (expense) => dispatch(startRemoveExpense(expense)),
+    startEditTransaction: (id, transaction) => dispatch(startEditTransaction(id, transaction)),
+    startRemoveTransaction: (transaction) => dispatch(startRemoveTransaction(transaction)),
   });
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditExpense);
+export default connect(mapStateToProps, mapDispatchToProps)(EditTransaction);

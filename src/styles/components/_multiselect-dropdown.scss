@@ -3,7 +3,7 @@
 }
 
 .searchBox { // To change search box element look
-  font-size: $font-size-lg;
+  font-size: $font-size-sm;
   height: 35px;
   padding: 1.2rem;
   border-radius: 0;
@@ -28,23 +28,4 @@
 
 .groupHeading { // To chanage group heading style
   
-}
-
-.input-group {
-  div {
-    border-radius: 0px;
-    span {
-      border-radius: 4px;  
-      background: $dark-grey;
-      margin: 0 5px;
-      padding: 3px 6px;
-      i {
-        font-size: 1.8rem;
-        font-weight: 100;
-      }
-    }
-    .searchBox {
-      padding-top: 5px;
-    }
-  } 
 }

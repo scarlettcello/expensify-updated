@@ -6,12 +6,33 @@
 
 .page-header__actions {
   margin-top: $m-size;
+  text-align: right;
+  @media (min-width: $desktop-breakpoint) {
+    margin-top: 0;
+  }
 }
 
 .page-header__title {
   font-weight: 300;
+  font-size: $font-size-xl;
   margin: 0;
   span {
     font-weight: 700;
+  }
+}
+
+.page-header {
+  .content-container {
+    @media (min-width: $desktop-breakpoint) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .color-blue{
+    color: $blue;
+  }
+  .color-red {
+    color: #ff3887;
   }
 }

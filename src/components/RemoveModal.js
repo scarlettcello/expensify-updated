@@ -8,7 +8,7 @@ const RemoveModal = (props) => {
       onRequestClose={props.handleCloseModal}
       closeTimeoutMS={200}
       className="modal"
-      contentLabel="Remove Expense"
+      contentLabel="Remove Transaction"
       ariaHideApp={false}
     >
       <h3 className="modal__title">Are you sure you want to remove it?</h3>

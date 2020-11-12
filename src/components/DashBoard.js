@@ -1,14 +1,14 @@
 import React from 'react'
-import ExpenseList from './ExpenseList';
-import ExpenseFilters from './ExpenseFilters';
-import ExpensesSummary from './ExpensesSummary';
+import TransactionList from './TransactionList';
+import DateAndTextFilters from './DateAndTextFilters';
+import TransactionsSummary from './TransactionsSummary';
 
 const DashBoard = () => {
   return (
     <div>
-      <ExpensesSummary />
-      <ExpenseFilters />      
-      <ExpenseList />
+      <TransactionsSummary />
+      <DateAndTextFilters />    
+      <TransactionList />
     </div>
   )
 }

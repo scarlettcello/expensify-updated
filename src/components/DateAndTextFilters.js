@@ -1,32 +1,18 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
-import { Multiselect } from 'multiselect-react-dropdown';
+//import { Multiselect } from 'multiselect-react-dropdown';
 import { setTextFilter, 
         sortByAmount, 
         sortByDate, 
         setStartDate, 
         setEndDate, 
-        setCategoryFilter } from '../actions/filters';
+        //setCategoryFilter 
+      } from '../actions/filters';
 
-export class ExpenseFilters extends React.Component {
+export class DateAndTextFilters extends React.Component {
   state = {
-    calendarFocused: null,
-    options: [
-      { id: 1, category: 'Food' },
-      { id: 2, category: 'Clothes' },
-      { id: 3, category: 'Housing' },
-      { id: 4, category: 'Leisure' },
-      { id: 5, category: 'Education' },
-      { id: 6, category: 'Communication' },
-      { id: 7, category: 'Transportation' },
-      { id: 8, category: 'Beauty' },
-      { id: 9, category: 'Medical' },
-      { id: 10, category: 'Gift' },
-      { id: 11, category: 'Miscellaneous' },
-      { id: 12, category: 'Investment' },
-      { id: 13, category: 'Tax' },
-    ]
+    calendarFocused: null
   };
 
   onInputChange = (e) => {
@@ -45,14 +31,6 @@ export class ExpenseFilters extends React.Component {
   onFocusChange = (calendarFocused) => {
     this.setState(() => ({ calendarFocused }));
   }
-  
-  onSelect = (selectedList) => {
-    this.props.setCategoryFilter(selectedList);
-  }
-
-  onRemove = (selectedList) => {
-    this.props.setCategoryFilter(selectedList);
-  }
 
   render() {
     return(
@@ -62,7 +40,7 @@ export class ExpenseFilters extends React.Component {
             <input 
               type="text" 
               className="text-input" 
-              placeholder="Search Expenses"
+              placeholder="Search Transactions"
               value={this.props.filters.text} 
               onChange={this.onInputChange}
             />
@@ -82,27 +60,15 @@ export class ExpenseFilters extends React.Component {
             />
           </div>
           <div className="input-group__item">
-            <label>Sort&nbsp;by:</label>&nbsp;
             <select 
               className="select" 
               value={this.props.filters.sortBy} 
               onChange={this.onSortChange}
             >
-              <option value="date">Date</option>
-              <option value="amount">Amount</option>
+              <option value="date">Sort by Date</option>
+              <option value="amount">Sort by Amount</option>
             </select>
           </div>
-        </div>
-        <div className="input-group">
-          <Multiselect
-            options={this.state.options}
-            selectedValues={this.state.selectedValue}
-            onSelect={this.onSelect}
-            onRemove={this.onRemove}
-            displayValue="category"
-            placeholder="Filter by category"
-            showCheckbox={true}
-          />
         </div>
       </div>
     );
@@ -117,11 +83,10 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => ({
   setTextFilter: (text) => dispatch(setTextFilter(text)),
-  setCategoryFilter: (categories) => dispatch(setCategoryFilter(categories)),
   sortByDate: () => dispatch(sortByDate()),
   sortByAmount: () => dispatch(sortByAmount()),
   setStartDate: (startDate) => dispatch(setStartDate(startDate)),
   setEndDate: (endDate) => dispatch(setEndDate(endDate))
 }); 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ExpenseFilters);
+export default connect(mapStateToProps, mapDispatchToProps)(DateAndTextFilters);
