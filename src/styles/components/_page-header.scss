@@ -5,7 +5,11 @@
 }
 
 .page-header__actions {
-  //margin-top: $m-size;
+  margin-top: $m-size;
+  text-align: right;
+  @media (min-width: $desktop-breakpoint) {
+    margin-top: 0;
+  }
 }
 
 .page-header__title {
@@ -19,7 +23,16 @@
 
 .page-header {
   .content-container {
-    display: flex;
-    justify-content: space-between;
+    @media (min-width: $desktop-breakpoint) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  .color-blue{
+    color: $blue;
+  }
+  .color-red {
+    color: #ff3887;
   }
 }

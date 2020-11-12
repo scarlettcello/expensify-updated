@@ -3,19 +3,27 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/initialize';
 
-export default class ExpenseForm extends Component {
+export default class TransactionForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      description: props.expense ? props.expense.description : '',
-      note: props.expense ? props.expense.note : '',
-      amount: props.expense ? (props.expense.amount / 100).toString() : '',
-      createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+      isExpense: props.transaction ? props.transaction.isExpense : true,
+      description: props.transaction ? props.transaction.description : '',
+      note: props.transaction ? props.transaction.note : '',
+      amount: props.transaction ? (props.transaction.amount / 100).toString() : '',
+      createdAt: props.transaction ? moment(props.transaction.createdAt) : moment(),
       calendarFocused: false,
-      category: props.expense ? props.expense.category : '',
-      error: ''
+      category: props.transaction ? props.transaction.category : '',
+      error: '',
     }
+  }
+
+  onToggleChange = (e) => {
+    const isExpense = !this.state.isExpense;
+    const isCategoryDisabled = !this.state.disabled;
+    this.setState(() => ({ isExpense }));
+    this.setState(() => ({ disabled: isCategoryDisabled }));
   }
 
   onDescriptionChange = (e) => {
@@ -56,17 +64,29 @@ export default class ExpenseForm extends Component {
 
     if (!this.state.description || !this.state.amount) {
       this.setState(() => ({ error: 'Please provide description and amount.' }));
+    } else if (this.state.isExpense&&this.state.category === '') {
+      this.setState(() => ({ error: 'Please select a category'}));
     } else {
       this.setState(() => ({ error: '' }));
-      this.props.onSubmit({
-        description: this.state.description,
-        amount: parseFloat(this.state.amount, 10) * 100,
-        createdAt: this.state.createdAt.valueOf(),
-        note: this.state.note,
-        category: this.state.category
-      });
-
-      console.log(this.props);
+      if (this.state.isExpense) {
+        this.props.onSubmit({
+          isExpense: this.state.isExpense,
+          description: this.state.description,
+          amount: parseFloat(this.state.amount, 10) * 100,
+          createdAt: this.state.createdAt.valueOf(),
+          note: this.state.note,
+          category: this.state.category
+        });
+      } else {
+        this.props.onSubmit({
+          isExpense: this.state.isExpense,
+          description: this.state.description,
+          amount: parseFloat(this.state.amount, 10) * 100,
+          createdAt: this.state.createdAt.valueOf(),
+          note: this.state.note,
+          category: ''
+        });   
+      }
     }
   };
 
@@ -74,10 +94,21 @@ export default class ExpenseForm extends Component {
     return (
       <form className="form" onSubmit={this.onSubmit}>
         {this.state.error && <p className="form__error">{this.state.error}</p>}
-        <label class="switch">
-          <input type="checkbox" />
-          <span class="slider round"></span>
-        </label>
+        <div className="toggle">
+          <label>Income</label>
+          <label className="switch">
+            <input 
+              type="checkbox" 
+              value={this.state.isExpense}
+              checked={this.state.isExpense}
+              onChange={this.onToggleChange} 
+            />
+            <span className="slider round"></span>
+          </label>
+          <label>Expense</label>
+        </div>
+        
+        
         <SingleDatePicker
           date={this.state.createdAt}
           onDateChange={this.onDateChange}
@@ -105,24 +136,26 @@ export default class ExpenseForm extends Component {
           onChange={this.onSelectChange}
           value={this.state.category}
           className="select"
+          disabled={!this.state.isExpense}
         >
           <option value="">Category</option>
-          <option value="Food">Food</option>
+          <option value="Beauty">Beauty</option>          
           <option value="Clothes">Clothes</option>
-          <option value="Housing">Housing</option>
-          <option value="Leisure">Leisure</option>
-          <option value="Education">Education</option>
           <option value="Communication">Communication</option>
-          <option value="Transportation">Transportation</option>
-          <option value="Beauty">Beauty</option>
-          <option value="Medical">Medical</option>  
-          <option value="Gift">Gift</option>         
+          <option value="Education">Education</option>
+          <option value="Food">Food</option>
+          <option value="Gift">Gift</option>  
+          <option value="Housing">Housing</option>  
+          <option value="Investment">Investment</option>
+          <option value="Leisure">Leisure</option>          
+          <option value="Medical">Medical</option>                   
           <option value="Miscellaneous">Miscellaneous</option>
-          <option value="Investment">investment</option>
           <option value="Tax">Tax</option>
+          <option value="Transportation">Transportation</option>
+          <option value="Utility Bills">Utility Bills</option>
         </select>
         <textarea
-          placeholder="Add a note for your expense (optional)"
+          placeholder="Add a note for your transaction (optional)"
           className="textarea"
           value={this.state.note}
           onChange={this.onNoteChange}
@@ -130,7 +163,7 @@ export default class ExpenseForm extends Component {
         </textarea>
         <div>
           <button className="button" type="submit">
-            Add
+            Submit
           </button>
         </div>        
       </form>  

@@ -1,9 +1,9 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { createBrowserHistory as createHistory } from 'history';
-import AddExpense from '../components/AddExpense';
+import AddTransaction from '../components/AddTransaction';
 import DashBoard from '../components/DashBoard';
-import EditExpense from '../components/EditExpense';
+import EditTransaction from '../components/EditTransaction';
 import Login from '../components/Login';
 import NotFound from '../components/NotFound';
 import '../styles/styles.scss';
@@ -19,8 +19,8 @@ const App = () => {
       <Switch>
         <PublicRoute path="/" component={Login} exact />
         <PrivateRoute path="/dashboard" component={DashBoard} />
-        <PrivateRoute path="/create" component={AddExpense} />
-        <PrivateRoute path="/edit/:id" component={EditExpense} />
+        <PrivateRoute path="/create" component={AddTransaction} />
+        <PrivateRoute path="/edit/:id" component={EditTransaction} />
         <Route component={NotFound} />
       </Switch>
     </Router>

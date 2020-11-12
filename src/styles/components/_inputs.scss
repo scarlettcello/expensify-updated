@@ -1,7 +1,7 @@
 .text-input, .select {
   border: 1px solid #cacccd;
   height: 50px;
-  font-size: $font-size-md;
+  font-size: $font-size-sm;
   font-weight: 300;
   padding: $s-size;
 }
@@ -15,14 +15,19 @@
   height: 10rem;
 }
 
-.input-group__item {
-  &:last-child {
-    margin-right: 0;
-  }
-  .DateRangePickerInput {
-    height: 50px;
-    .DateInput_input {
-      font-size: $font-size-md;
-    }   
-  }
+.text-input, .select, .DateRangePicker {
+  width: 100%;
 }
+
+.DateRangePickerInput {
+  height: 50px;
+  width: 100%;
+  &.DateRangePickerInput__showClearDates {
+    padding-right: 40px !important;
+  }
+  .DateInput_input {
+    font-size: $font-size-sm;
+  }   
+}
+
+
