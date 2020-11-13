@@ -106,9 +106,7 @@ export default class TransactionForm extends Component {
             <span className="slider round"></span>
           </label>
           <label>Expense</label>
-        </div>
-        
-        
+        </div>             
         <SingleDatePicker
           date={this.state.createdAt}
           onDateChange={this.onDateChange}

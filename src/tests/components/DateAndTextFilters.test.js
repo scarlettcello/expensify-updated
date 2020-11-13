@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import '../setupTests';
 import moment from 'moment';
 import { DateRangePicker } from 'react-dates';
-import { ExpenseFilters } from '../../components/ExpenseFilters';
+import { DateAndTextFilters } from '../../components/DateAndTextFilters';
 import { filters, altFilters } from '../fixtures/filters';
 
 let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, wrapper;
@@ -15,7 +15,7 @@ beforeEach(() => {
   setStartDate = jest.fn();
   setEndDate = jest.fn();
   wrapper = shallow(
-    <ExpenseFilters 
+    <DateAndTextFilters 
       filters={filters}
       setTextFilter={setTextFilter}
       sortByDate={sortByDate}
@@ -24,13 +24,13 @@ beforeEach(() => {
       setEndDate={setEndDate}
     />
   );
-})
+});
 
-test('should render ExpenseFilters correctly', () => {
+test('should render DateAndTextFilters correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test('should render ExpenseFilters with alt data correctly', () => {
+test('should render DateAndTextFilters with alt data correctly', () => {
   wrapper.setProps({ filters: altFilters });
   expect(wrapper).toMatchSnapshot();
 });
