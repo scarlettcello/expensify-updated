@@ -9,7 +9,7 @@ export const addTransaction = (transaction) => ({
 export const startAddTransaction = (transactionData = {}) => {
   return (dispatch, getState) => {
     const uid = getState().auth.uid;
-    const { isExpense ='', description = '', note= '', amount = 0, createdAt = 0, category='' } = transactionData;
+    const { isExpense =true, description = '', note= '', amount = 0, createdAt = 0, category='' } = transactionData;
     const transaction = { isExpense, description, note, amount, createdAt, category }
     return database.ref(`users/${uid}/transactions`).push(transaction).then((ref) => {
       dispatch(addTransaction({ id: ref.key, ...transaction }));
