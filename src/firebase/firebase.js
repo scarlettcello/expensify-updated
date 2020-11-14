@@ -30,8 +30,10 @@ if (process.env.NODE_ENV === 'test') {
 
 const database = firebase.database();
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
+const facebookAuthProvider = new firebase.auth.FacebookAuthProvider();
+facebookAuthProvider.addScope('user_birthday');
 
-export { firebase, googleAuthProvider, database as default }
+export { firebase, googleAuthProvider, facebookAuthProvider, database as default }
 
 // // child_removed
 // database.ref('expenses').on('child_removed', (snapshot) => {
