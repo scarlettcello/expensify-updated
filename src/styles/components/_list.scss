@@ -51,10 +51,13 @@
   font-weight: 600;
   margin: 0 0 0 $l-size;
   word-break: break-all;
+  @media (min-width: $desktop-breakpoint) {
+    margin: 0
+  }
 }
 
 .list-item__sub-title {
-
+  
 }
 
 .list-item__data {

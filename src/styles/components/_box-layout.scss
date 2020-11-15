@@ -1,5 +1,5 @@
 .box-layout {
-  background: url('/images/bg.jpg');
+  background: url('/images/dusk.jpg');
   background-size: cover;
   display: flex;
   align-items: center;
@@ -13,7 +13,7 @@
   border-radius: 3px;
   padding: $l-size $m-size; 
   text-align: center;
-  width: 25rem;
+  width: 30rem;
 }
 
 .box-layout__title {
